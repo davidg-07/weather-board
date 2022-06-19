@@ -19,7 +19,15 @@ function getGeoLocation(cityname) {
             const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}`;
             fetch(weatherUrl)
                 .then(res => res.json())
-                .then(data => console.log(data));
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("city-name").innerText = cityname;
+                    document.getElementById("span-temp").innerText = data?.current?.temp;
+                    document.getElementById("span-wind").innerText = data?.current?.wind_speed;
+                    document.getElementById("span-hum").innerText = data?.current?.humidity;
+                    document.getElementById("span-uv").innerText = data?.current?.uvi;
+                    document.getElementById("img-icon").src = `https://openweathermap.org/img/w/${data?.current?.weather[0]?.icon}.png`;
+                });
         })
         .catch(err => console.error(err));
 }
