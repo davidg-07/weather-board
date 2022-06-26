@@ -16,7 +16,7 @@ function getGeoLocation(cityname) {
             console.log('data: ', geoData);
             const lat = geoData[0].lat;
             const lon = geoData[0].lon;
-            const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}`;
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&&units=imperial&appid=${apikey}`;
             fetch(weatherUrl)
                 .then(res => res.json())
                 .then(data => {
