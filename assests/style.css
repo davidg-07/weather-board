@@ -1,6 +1,9 @@
 button{
     width: 50%;
 }
+.col-9 {
+    outline: auto black;
+}
 ul {
     list-style: none;
 }

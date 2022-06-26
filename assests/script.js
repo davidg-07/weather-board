@@ -8,6 +8,7 @@ searchBtnEl.addEventListener('click', function () {
     getGeoLocation(inputEl.value)
 });
 
+// calling data from requested location
 function getGeoLocation(cityname) {
     const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=5&appid=${apikey}`;
     fetch(geoUrl)
