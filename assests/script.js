@@ -32,3 +32,26 @@ function getGeoLocation(cityname) {
         })
         .catch(err => console.error(err));
 }
+
+function uviColor(data) {
+    let uvIndexEl = document.querySelector('.span-uv');
+    let uvi = data.current.uvi;
+    // Low UV
+    if (uvi <= 3) {
+        uvIndexEl.style.backgroundColor = 'green';
+        uvIndexEl.style.color = "white";
+        uvIndexEl.style.width = "10rem";
+    }
+    // Moderate UV
+    if (uvi > 3 && uvi <= 6) {
+        uvIndexEl.style.backgroundColor = 'yellow';
+        uvIndexEl.style.color = "black";
+        uvIndexEl.style.width = "10rem";
+    }
+    // High UV
+    if (uvi > 6) {
+        uvIndexEl.style.backgroundColor = 'red';
+        uvIndexEl.style.color = "white";
+        uvIndexEl.style.width = "10rem";
+    }
+  }
