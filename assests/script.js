@@ -28,6 +28,7 @@ function getGeoLocation(cityname) {
                     document.getElementById("span-hum").innerText = data?.current?.humidity;
                     document.getElementById("span-uv").innerText = data?.current?.uvi;
                     document.getElementById("img-icon").src = `https://openweathermap.org/img/w/${data?.current?.weather[0]?.icon}.png`;
+                    uviColor(data);
                 });
         })
         .catch(err => console.error(err));
