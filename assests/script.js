@@ -23,9 +23,9 @@ function getGeoLocation(cityname) {
                 .then(data => {
                     console.log(data);
                     document.getElementById("city-name").innerText = cityname;
-                    document.getElementById("span-temp").innerText = data?.current?.temp;
-                    document.getElementById("span-wind").innerText = data?.current?.wind_speed;
-                    document.getElementById("span-hum").innerText = data?.current?.humidity;
+                    document.getElementById("span-temp").innerText = data?.current?.temp + " F";
+                    document.getElementById("span-wind").innerText = data?.current?.wind_speed + " MPH";
+                    document.getElementById("span-hum").innerText = data?.current?.humidity + " %";
                     document.getElementById("span-uv").innerText = data?.current?.uvi;
                     document.getElementById("img-icon").src = `https://openweathermap.org/img/w/${data?.current?.weather[0]?.icon}.png`;
                     uviColor(data);
@@ -34,25 +34,33 @@ function getGeoLocation(cityname) {
         .catch(err => console.error(err));
 }
 
+function fiveDayForecast(data) {
+    for (i = 0; i < data.daily.length; i++) {
+        let daily = data.daily[i];
+        let dailyDescription = daily.weather[0].description;
+        let dailyTempMin = daily.temp.day.wind_speed.humidity;
+    }
+}
+
 function uviColor(data) {
-    let uvIndexEl = document.getElementById("span-uv");
+    let uvIndex = document.getElementById("span-uv");
     let uvi = data.current.uvi;
     // Low UV
     if (uvi <= 3) {
-        uvIndexEl.style.backgroundColor = "green";
-        uvIndexEl.style.color = "white";
-        uvIndexEl.style.width = "10rem";
+        uvIndex.style.backgroundColor = "green";
+        uvIndex.style.color = "white";
+        uvIndex.style.width = "10rem";
     }
     // Moderate UV
     if (uvi > 3 && uvi <= 6) {
-        uvIndexEl.style.backgroundColor = "yellow";
-        uvIndexEl.style.color = "black";
-        uvIndexEl.style.width = "10rem";
+        uvIndex.style.backgroundColor = "yellow";
+        uvIndex.style.color = "black";
+        uvIndex.style.width = "10rem";
     }
     // High UV
     if (uvi > 6) {
-        uvIndexEl.style.backgroundColor = "red";
-        uvIndexEl.style.color = "white";
-        uvIndexEl.style.width = "10rem";
+        uvIndex.style.backgroundColor = "red";
+        uvIndex.style.color = "white";
+        uvIndex.style.width = "10rem";
     }
   }
