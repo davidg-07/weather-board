@@ -17,7 +17,7 @@ function getGeoLocation(cityname) {
             console.log('data: ', geoData);
             const lat = geoData[0].lat;
             const lon = geoData[0].lon;
-            const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&&units=imperial&appid=${apikey}`;
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&&units=imperial&exclude=minutely,hourly&appid=${apikey}`;
             fetch(weatherUrl)
                 .then(res => res.json())
                 .then(data => {
@@ -29,6 +29,7 @@ function getGeoLocation(cityname) {
                     document.getElementById("span-uv").innerText = data?.current?.uvi;
                     document.getElementById("img-icon").src = `https://openweathermap.org/img/w/${data?.current?.weather[0]?.icon}.png`;
                     uviColor(data);
+                    fiveDayForecast(data);
                 });
         })
         .catch(err => console.error(err));
@@ -37,8 +38,23 @@ function getGeoLocation(cityname) {
 function fiveDayForecast(data) {
     for (i = 0; i < data.daily.length; i++) {
         let daily = data.daily[i];
-        let dailyDescription = daily.weather[0].description;
-        let dailyTempMin = daily.temp.day.wind_speed.humidity;
+        console.log(daily);
+        const forecastEl = document.getElementById("forecast-section");
+        const divEl = document.createElement("div");
+        divEl.setAttribute("id", i);
+        divEl.setAttribute("class", "card");
+        const tempEl = document.createElement("p");
+        tempEl.innerText = "temp: " + daily.temp.day + " F";
+        const windEl = document.createElement("p");
+        windEl.innerText = "Wind: " + daily.wind_speed
+        + " MPH";
+        const humidityEl = document.createElement("p");
+        humidityEl.innerText = "Humidity: " + daily.humidity
+        + " %";
+        divEl.appendChild(tempEl);
+        divEl.appendChild(windEl);
+        divEl.appendChild(humidityEl);
+        forecastEl.appendChild(divEl);
     }
 }
 
