@@ -36,26 +36,25 @@ function getGeoLocation(cityname) {
 }
 
 function fiveDayForecast(data) {
-    for (i = 0; i < data.daily.length; i++) {
-        const daily = data.daily[i];
+    for (i = 0; i <= 4 ; i++) {
+        const daily = data.daily;
         console.log(daily);
         const forecastEl = document.getElementById("forecast-section");
         const divEl = document.createElement("div");
         divEl.setAttribute("id", i);
         divEl.setAttribute("class", "card");
         const tempEl = document.createElement("p");
-        tempEl.innerText = "temp: " + daily.temp.day + " F";
+        tempEl.innerText = "temp: " + daily[i].temp.day + " F";
         const windEl = document.createElement("p");
-        windEl.innerText = "Wind: " + daily.wind_speed
+        windEl.innerText = "Wind: " + daily[i].wind_speed
         + " MPH";
         const humidityEl = document.createElement("p");
-        humidityEl.innerText = "Humidity: " + daily.humidity
+        humidityEl.innerText = "Humidity: " + daily[i].humidity
         + " %";
         divEl.appendChild(tempEl);
         divEl.appendChild(windEl);
         divEl.appendChild(humidityEl);
         forecastEl.appendChild(divEl);
-        const fiveDay = daily.slice(1, 2, 3, 4, 5);
     }
 }
 
