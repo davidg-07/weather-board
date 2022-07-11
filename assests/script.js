@@ -37,7 +37,7 @@ function getGeoLocation(cityname) {
 
 function fiveDayForecast(data) {
     for (i = 0; i < data.daily.length; i++) {
-        let daily = data.daily[i];
+        const daily = data.daily[i];
         console.log(daily);
         const forecastEl = document.getElementById("forecast-section");
         const divEl = document.createElement("div");
@@ -55,6 +55,7 @@ function fiveDayForecast(data) {
         divEl.appendChild(windEl);
         divEl.appendChild(humidityEl);
         forecastEl.appendChild(divEl);
+        const fiveDay = daily.slice(1, 2, 3, 4, 5);
     }
 }
 
