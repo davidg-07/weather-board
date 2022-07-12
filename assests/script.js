@@ -22,7 +22,7 @@ function getGeoLocation(cityname) {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    document.getElementById("city-name").innerText = cityname + moment().subtract(10, 'days').calendar();
+                    document.getElementById("city-name").innerText = cityname + " (" + (moment().format("MM/DD/YYYY")) + ") ";
                     document.getElementById("span-temp").innerText = data?.current?.temp + " F";
                     document.getElementById("span-wind").innerText = data?.current?.wind_speed + " MPH";
                     document.getElementById("span-hum").innerText = data?.current?.humidity + " %";
