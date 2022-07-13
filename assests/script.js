@@ -22,7 +22,7 @@ function getGeoLocation(cityname) {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    document.getElementById("city-name").innerText = cityname + " (" + (moment().format("MM/DD/YYYY")) + ") ";
+                    document.getElementById("city-name").innerText = cityname;
                     document.getElementById("span-temp").innerText = data?.current?.temp + " F";
                     document.getElementById("span-wind").innerText = data?.current?.wind_speed + " MPH";
                     document.getElementById("span-hum").innerText = data?.current?.humidity + " %";
@@ -35,6 +35,7 @@ function getGeoLocation(cityname) {
         .catch(err => console.error(err));
 }
 
+// getting fivedayforecast 
 function fiveDayForecast(data) {
     for (i = 0; i <= 4 ; i++) {
         const daily = data.daily;
@@ -43,6 +44,8 @@ function fiveDayForecast(data) {
         const divEl = document.createElement("div");
         divEl.setAttribute("id", i);
         divEl.setAttribute("class", "card");
+        const dateEl = document.createElement("p");
+        dateEl.innerText = moment.unix(daily[i].dt).format('MM/DD/YY');
         const tempEl = document.createElement("p");
         tempEl.innerText = "temp: " + daily[i].temp.day + " F";
         const windEl = document.createElement("p");
