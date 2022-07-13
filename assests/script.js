@@ -1,6 +1,6 @@
 const searchBtnEl = document.getElementById("btn-search");
 const inputEl = document.getElementById('input-city');
-const apikey = '7c076ebdc9171cc941023949cd3161e3'
+const apikey = '7c076ebdc9171cc941023949cd3161e3';
 
 searchBtnEl.addEventListener('click', function () {
     console.log('hello all' + inputEl.value);
@@ -22,7 +22,8 @@ function getGeoLocation(cityname) {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    document.getElementById("city-name").innerText = cityname;
+                    const daily = data.daily;
+                    document.getElementById("city-name").innerText = cityname + ' ' + moment.unix(daily[0].dt).format('MM/DD/YY');
                     document.getElementById("span-temp").innerText = data?.current?.temp + " F";
                     document.getElementById("span-wind").innerText = data?.current?.wind_speed + " MPH";
                     document.getElementById("span-hum").innerText = data?.current?.humidity + " %";
@@ -54,6 +55,7 @@ function fiveDayForecast(data) {
         const humidityEl = document.createElement("p");
         humidityEl.innerText = "Humidity: " + daily[i].humidity
         + " %";
+        divEl.appendChild(dateEl);
         divEl.appendChild(tempEl);
         divEl.appendChild(windEl);
         divEl.appendChild(humidityEl);
