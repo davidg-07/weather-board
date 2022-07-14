@@ -4,8 +4,16 @@ button{
 .col-9 {
     outline: auto black;
 }
+.col-12 {
+    text-align: center;
+    border-style: solid;
+    background-color: darkslategrey;
+}
 ul {
     list-style: none;
+}
+li {
+    margin-bottom: 1rem;
 }
 .five-day {
     text-align: left;
@@ -20,4 +28,11 @@ ul {
 }
 #card{
     background-color: skyblue;
+}
+img {
+    height: 50px;
+    width: 50px;
+}
+.card {
+    background-color: darkcyan;
 }
