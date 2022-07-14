@@ -47,6 +47,9 @@ function fiveDayForecast(data) {
         divEl.setAttribute("class", "card");
         const dateEl = document.createElement("p");
         dateEl.innerText = moment.unix(daily[i].dt).format('MM/DD/YY');
+        const image = document.createElement('img')
+        image.src = "https://openweathermap.org/img/w/" + iconPic + ".png";
+        const iconPic = data.daily[i].weather[0].icon;
         const tempEl = document.createElement("p");
         tempEl.innerText = "temp: " + daily[i].temp.day + " F";
         const windEl = document.createElement("p");
@@ -56,6 +59,7 @@ function fiveDayForecast(data) {
         humidityEl.innerText = "Humidity: " + daily[i].humidity
         + " %";
         divEl.appendChild(dateEl);
+        divEl.appendChild(iconPic)
         divEl.appendChild(tempEl);
         divEl.appendChild(windEl);
         divEl.appendChild(humidityEl);
