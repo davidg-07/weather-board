@@ -48,7 +48,7 @@ function fiveDayForecast(data) {
         const dateEl = document.createElement("p");
         dateEl.innerText = moment.unix(daily[i].dt).format('MM/DD/YY');
         const image = document.createElement('img')
-        const iconPic = data.daily[i].weather[i].icon;
+        const iconPic = data.daily[i].weather[0].icon;
         image.src = "https://openweathermap.org/img/w/" + iconPic + ".png";
         const tempEl = document.createElement("p");
         tempEl.innerText = "temp: " + daily[i].temp.day + " F";
